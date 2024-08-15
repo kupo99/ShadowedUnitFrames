@@ -90,7 +90,6 @@ read_globals = {
 	"UnitClass",
 	"UnitClassification",
 	"UnitCreatureFamily",
-	"UnitDebuff",
 	"UnitExists",
 	"UnitFactionGroup",
 	"UnitGetIncomingHeals",
