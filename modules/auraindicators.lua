@@ -3,7 +3,7 @@ ShadowUF:RegisterModule(Indicators, "auraIndicators", ShadowUF.L["Aura indicator
 
 Indicators.auraFilters = {"boss", "curable"}
 
-local GetSpellTexture = C_Spell and  C_Spell.GetSpellTexture or function(id) return (select(3, GetSpellInfo(id))) end
+local GetSpellTexture = C_Spell.GetSpellTexture
 
 Indicators.auraConfig = setmetatable({}, {
 	__index = function(tbl, index)

@@ -1,4 +1,4 @@
-local GetSpellName = C_Spell and C_Spell.GetSpellName or GetSpellInfo
+local GetSpellName = C_Spell.GetSpellName
 
 local Tags = {afkStatus = {}, offlineStatus = {}, customEvents = {}, powerMap = {}, moduleKey = "tags"}
 local tagPool, functionPool, temp, regFontStrings, powerMap = {}, {}, {}, {}, Tags.powerMap
