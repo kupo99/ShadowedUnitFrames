@@ -86,20 +86,21 @@ end
 
 function XP:UpdateRep(frame)
 	if( not frame.xpBar.rep ) then return end
-	local name, reaction, min, max, current = GetWatchedFactionInfo()
-	if( not name ) then
+	local factionData = C_Reputation.GetWatchedFactionData()
+	if( not factionData ) then
 		frame.xpBar.rep:Hide()
 		return
 	end
 
 	-- Blizzard stores faction info related to Exalted, not your current level, so get more mathier to find the current reputation using the current standing tier
+	local min, max, current = factionData.currentReactionThreshold, factionData.nextReactionThreshold, factionData.currentStanding
 	current = math.abs(min - current)
 	max = math.abs(min - max)
 
-	local color = FACTION_BAR_COLORS[reaction]
+	local color = FACTION_BAR_COLORS[factionData.reaction]
 	frame.xpBar.rep:SetMinMaxValues(0, max)
 	frame.xpBar.rep:SetValue(current)
-	frame.xpBar.rep.tooltip = string.format(L["%s (%s): %s/%s (%.2f%% done)"], name, GetText("FACTION_STANDING_LABEL" .. reaction, UnitSex("player")), formatNumber(current), formatNumber(max), (max > 0 and current / max or 0) * 100)
+	frame.xpBar.rep.tooltip = string.format(L["%s (%s): %s/%s (%.2f%% done)"], factionData.name, GetText("FACTION_STANDING_LABEL" .. tostring(factionData.reaction), UnitSex("player")), formatNumber(current), formatNumber(max), (max > 0 and current / max or 0) * 100)
 	frame.xpBar.rep:SetStatusBarColor(color.r, color.g, color.b, ShadowUF.db.profile.bars.alpha)
 	frame.xpBar.rep.background:SetVertexColor(color.r, color.g, color.b, ShadowUF.db.profile.bars.backgroundAlpha)
 	frame.xpBar.rep:Show()

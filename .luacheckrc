@@ -43,6 +43,7 @@ read_globals = {
 	-- API functions
 	"C_AddOns",
 	"C_IncomingSummon",
+	"C_Reputation",
 	"C_Spell",
 	"C_Timer",
 	"C_UnitAuras",
@@ -68,7 +69,6 @@ read_globals = {
 	"GetTime",
 	"GetTotemInfo",
 	"GetUnitPowerBarInfoByID",
-	"GetWatchedFactionInfo",
 	"GetWeaponEnchantInfo",
 	"GetXPExhaustion",
 	"HasLFGRestrictions",
