@@ -121,7 +121,8 @@ function ShadowUF:LoadDefaultLayout(useMerge)
 	end
 
 	config.auraColors = {
-		removable = {r = 1, g = 1, b = 1}
+		removable = {r = 1, g = 1, b = 1},
+    stackColor = {r = 1, g = 1, b = 1, a = 1}
 	}
 
 	config.classColors = {

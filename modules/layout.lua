@@ -138,6 +138,7 @@ function Layout:Load(frame)
 	end
 
 	-- Load all of the layout things
+  frame:SetFrameStrata("LOW")
 	self:SetupFrame(frame, unitConfig)
 	self:SetupBars(frame, unitConfig)
 	self:PositionWidgets(frame, unitConfig)

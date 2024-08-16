@@ -231,18 +231,24 @@ local function updateButton(id, group, config)
 		button.cooldown:SetReverse(true)
 		button.cooldown:SetDrawEdge(false)
 		button.cooldown:SetDrawSwipe(true)
-		button.cooldown:SetSwipeColor(0, 0, 0, 0.8)
+		button.cooldown:SetSwipeColor(0, 0, 0, 0.6)
 		button.cooldown:Hide()
 
-		button.stack = button:CreateFontString(nil, "OVERLAY")
+		button.stack = button.cooldown:CreateFontString(nil, "OVERLAY")
 		button.stack:SetFont("Interface\\AddOns\\ShadowedUnitFrames\\media\\fonts\\Myriad Condensed Web.ttf", 10, "OUTLINE")
 		button.stack:SetShadowColor(0, 0, 0, 1.0)
-		button.stack:SetShadowOffset(0.50, -0.50)
+		button.stack:SetShadowOffset(1.0, -1.0)
 		button.stack:SetHeight(1)
 		button.stack:SetWidth(1)
 		button.stack:SetAllPoints(button)
 		button.stack:SetJustifyV("BOTTOM")
 		button.stack:SetJustifyH("RIGHT")
+
+    --print(button.stack:GetFrameLevel())
+
+    -- button.stack:SetFrameLevel(button.cooldown:GetFrameLevel() + 1)
+
+    -- print(button.stack:GetFrameLevel())
 
 		button.border = button:CreateTexture(nil, "OVERLAY")
 		button.border:SetPoint("CENTER", button)
@@ -272,6 +278,18 @@ local function updateButton(id, group, config)
 	button.border:SetHeight(config.size + 1)
 	button.border:SetWidth(config.size + 1)
 	button.stack:SetFont("Interface\\AddOns\\ShadowedUnitFrames\\media\\fonts\\Myriad Condensed Web.ttf", math.floor((config.size * 0.60) + 0.5), "OUTLINE")
+  button.stack:SetShadowColor(0, 0, 0, 1.0)
+	button.stack:SetShadowOffset(1.0, -1.0)
+
+  -- button.stack:SetTextColor(1.0, 1.0, 0.2, 1.0)
+
+  button.stack:SetTextColor(
+    ShadowUF.db.profile.auraColors.stackColor.r,
+    ShadowUF.db.profile.auraColors.stackColor.g,
+    ShadowUF.db.profile.auraColors.stackColor.b,
+    ShadowUF.db.profile.auraColors.stackColor.a)
+  
+
 
 	button:SetScript("OnClick", cancelAura)
 	button.parent = group.parent
@@ -525,7 +543,11 @@ local function renderAura(parent, frame, type, config, displayConfig, index, fil
 	spellID = tostring(spellID)
 	-- Do our initial list check to see if we can quick filter it out
 	if( parent.whitelist[type] and not parent.whitelist[name] and not parent.whitelist[spellID] ) then return end
-	if( parent.blacklist[type] and ( parent.blacklist[name] or parent.blacklist[spellID] ) ) then return end
+	if( parent.blacklist[type] and ( parent.blacklist[name] or parent.blacklist[spellID] ) ) then return end  
+
+  -- if (name == 'Festering Scythe') then
+  --   return end
+  -- print(name)
 
 	-- Now do our type filter
 	local category = categorizeAura(type, curable, auraType, caster, isRemovable, canApplyAura, isBossDebuff)
@@ -580,6 +602,7 @@ local function renderAura(parent, frame, type, config, displayConfig, index, fil
 	button.previousHasScale = nil
 	button.icon:SetTexture(texture)
 	button.stack:SetText(count > 1 and count or "")
+  -- button.stack:SetText("LUL")
 	button:Show()
 end
 

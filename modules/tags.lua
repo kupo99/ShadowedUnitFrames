@@ -375,7 +375,11 @@ end
 
 Tags.abbrevCache = setmetatable({}, {
 	__index = function(tbl, val)
-		val = string.gsub(val, "([^%s]+) ", abbreviateName)
+    local a, b, c, d, e, f = strsplit(" ", val, 5)
+    val = a:sub(1, 1) .. ". " .. (f or e or d or c or b)
+		
+    -- val = string.gsub(val, "([^%s]+) ", abbreviateName)
+
 		rawset(tbl, val, val)
 		return val
 end})

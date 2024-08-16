@@ -208,7 +208,7 @@ local function setColor(info, r, g, b, a)
 end
 
 local function getColor(info)
-	local color = get(info) or {}
+	local color = get(info) or {r = 0.5, g = 0.5, b = 0.5, a = 1.0}
 	return color.r, color.g, color.b, color.a
 end
 
@@ -1354,6 +1354,14 @@ local function loadGeneralOptions()
 								name = L["Stealable/Curable/Dispellable"],
 								desc = L["Border coloring of stealable, curable and dispellable auras."],
 								arg = "auraColors.removable",
+								width = "double"
+							},         
+              stackColor = {
+								order = 1,
+								type = "color",
+								name = L["Stack color"],
+								desc = L["Stack color of auras."],
+								arg = "auraColors.stackColor",
 								width = "double"
 							}
 						}
